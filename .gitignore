@@ -33,3 +33,6 @@ pytest_cache/
 
 # Jupyter Notebook checkpoint files
 .ipynb_checkpoints/
+
+# Python virtual environment
+venv/
