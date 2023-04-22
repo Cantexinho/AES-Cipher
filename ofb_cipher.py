@@ -1,18 +1,18 @@
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
 
-class CbcCipher:
+class OfbCipher:
     def __init__(self) -> None:
         self.iv = self.select_iv()
         self.key = self.select_key()
     
     def cipher_text(self, text_to_process: bytes) -> bytes:
-        cipher = AES.new(self.key, AES.MODE_CBC, self.iv)
+        cipher = AES.new(self.key, AES.MODE_OFB, self.iv)
         ciphertext = cipher.encrypt(pad(text_to_process, AES.block_size))
         return ciphertext
 
     def decipher_text(self, text_to_process: bytes) -> str:
-        cipher = AES.new(self.key, AES.MODE_CBC, self.iv)
+        cipher = AES.new(self.key, AES.MODE_OFB, self.iv)
         decrypted_padded_plaintext = cipher.decrypt(text_to_process)
         decrypted_plaintext = unpad(decrypted_padded_plaintext, AES.block_size)
         return decrypted_plaintext
